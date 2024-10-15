@@ -13,6 +13,7 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINT_F
 # include <unistd.h>
+# include <stdarg.h>
 
 int	ft_printf(char const s, ...);
 int	ft_putstr(char *s);
