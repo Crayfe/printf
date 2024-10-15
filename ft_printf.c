@@ -19,7 +19,7 @@ int	print_cases(char *s, void *arg)
 	if (s == '%')
 		write(1, "%", ++printed_chars);
 	else if (s == 'c')
-		printed_chars = ft_putchar((char)arg);
+		write(1, &(char)args, ++printed_chars);
 	else if (s == 's')
 		printed_chars = ft_putstr((char *)arg);
 	else if (s == 'p')

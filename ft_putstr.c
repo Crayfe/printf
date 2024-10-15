@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cayuso-f <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cayuso-f <cayuso-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/02 15:46:37 by cayuso-f          #+#    #+#             */
-/*   Updated: 2024/10/02 15:50:40 by cayuso-f         ###   ########.fr       */
+/*   Created: 2024/10/11 11:38:14 by cayuso-f          #+#    #+#             */
+/*   Updated: 2024/10/11 12:56:28 by cayuso-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "ft_printf.h"
 
-#ifndef FT_PRINTF_H
-# define FT_PRINT_F
-# include <unistd.h>
+int	ft_putstr(char *s)
+{
+	int	i;
 
-int	ft_printf(char const s, ...);
-int	ft_putstr(char *s);
-int	ft_putnbr(int nb);
-int	ft_putbr_base(int nb, char *base);
-int	ft_butstr_non_printable(char *ptr);
-#endif
+	i = 0;
+	while (s[i])
+	{
+		write(1, s + i, 1);
+		i++;
+	}
+	return (i);
+}
