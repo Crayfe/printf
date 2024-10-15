@@ -13,7 +13,7 @@ NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = ft_printf_utils.c ft_printf.c
+SRC = ft_putstr.c ft_printf.c
 SRC_BONUS = 
 OBJ = $(SRC:.c=.o)
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
