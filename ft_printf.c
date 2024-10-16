@@ -11,37 +11,40 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-int	print_cases(char c, va_list args)
+static int	print_cases(char c, va_list args)
 {
-	int	n_char;
+	int	n;
 
-	n_char = 0;
+	n = 0;
 	if (c == '%')
-		n_char = ft_putchar('%');
+		n = ft_putchar('%');
 	else if (c == 'c')
-		n_char = ft_putchar(va_arg(args, int));
-	else if (c == 'c')
-		n_char = ft_putstr(va_arg(args, char *));
+		n = ft_putchar(va_arg(args, int));
+	else if (c == 's')
+		n = ft_putstr(va_arg(args, char *));
 	else if (c == 'p')
-		n_char = 0;//ft_putstr_non_printable(va_arg(args, unsigned long));
+	{
+		n += ft_putstr("0x");
+		n += ft_putnbr_base(va_arg(args, unsigned long), "0123456789abcdef");
+	}
 	else if (c == 'd')
-		n_char = ft_putnbr(va_arg(args, int));
+		n = ft_putnbr(va_arg(args, int));
 	else if (c == 'i')
-		n_char = ft_putnbr(va_arg(args, int));
+		n = ft_putnbr(va_arg(args, int));
 	else if (c == 'u')
-		n_char = ft_putnbr_base(va_arg(args, unsigned int), "0123456789");
+		n = ft_putnbr_base(va_arg(args, unsigned int), "0123456789");
 	else if (c == 'x')
-		n_char = ft_putnbr_base(va_arg(args, unsigned int), "01234567890abcdef");
+		n = ft_putnbr_base(va_arg(args, unsigned int), "0123456789abcdef");
 	else if (c == 'X')
-        n_char = ft_putnbr_base(va_arg(args, unsigned int), "01234567890ABCDEF");
-	return (n_char);
+		n = ft_putnbr_base(va_arg(args, unsigned int), "0123456789ABCDEF");
+	return (n);
 }
 
 int	ft_printf(char const *s, ...)
 {
 	va_list	args;
-	int	n_char;
-	int	i;
+	int		n_char;
+	int		i;
 
 	va_start(args, s);
 	n_char = 0;
@@ -49,13 +52,13 @@ int	ft_printf(char const *s, ...)
 	while (s[i])
 	{
 		if (s[i] == '%' && s[i + 1])
-		{
-			n_char += print_cases(s[i + 1], args);
-			i += n_char;
-		}
+			n_char += print_cases(s[i++ + 1], args);
 		else
+		{
 			ft_putchar(s[i]);
-		++n_char;
+			++n_char;
+		}
+		++i;
 	}
 	va_end(args);
 	return (n_char);
