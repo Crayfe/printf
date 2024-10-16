@@ -9,27 +9,24 @@
 #    Updated: 2024/10/02 15:56:17 by cayuso-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = ft_putstr.c ft_printf.c
-SRC_BONUS = 
+NAME = libftprintf.a
+#LIBFT = ./libft/libft.a
+
+SRC = ft_printf_utils.c ft_printf.c
 OBJ = $(SRC:.c=.o)
-OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 all	:	$(NAME)
 
 $(NAME)	:	$(OBJ) 
+#$(NAME): $(LIBFT) $(OBJ)
+#	cp $(LIBFT) ./$(NAME)
 		ar rcs $(NAME) $(OBJ)
 
-bonus	:	$(OBJ_BONUS)
-
-$(OBJ_BONUS):
-		$(CC) $(CFLAGS) -c $(SRC_BONUS)
-		ar -rcs $(NAME) $(OBJ_BONUS)
 clean	:
-		rm -f $(OBJ) $(OBJ_BONUS)
+		rm -f $(OBJ)
 
 fclean	: 	clean
 		rm -f $(NAME)
@@ -37,3 +34,4 @@ fclean	: 	clean
 re	: 	fclean all
 
 .DEFAULT_GOAL := all
+.PHONY: all clean fclean re
