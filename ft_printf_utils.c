@@ -43,7 +43,29 @@ int	ft_putstr(char *s)
 int	ft_putnbr(int n)
 {
 	unsigned int	aux_int;
-	static int	chars;
+	int		chars;
+
+	aux_int = 0;
+	chars = 0;
+	if (n < 0)
+	{
+		ft_putchar('-');
+		aux_int = -1 * n;
+		++chars;
+	}
+	else
+		aux_int = n;
+	if (aux_int > 9)
+		chars += ft_putnbr(aux_int / 10);
+	ft_putchar(aux_int % 10 + '0');
+	++chars;
+	return (chars);
+}
+
+int	ft_putnbr_base(int n, char *base)
+{
+	unsigned int	aux_int;
+	int		chars;
 
 	aux_int = 0;
 	if (n < 0)
@@ -54,9 +76,10 @@ int	ft_putnbr(int n)
 	}
 	else
 		aux_int = n;
-	if (aux_int > 9)
-		ft_putnbr(aux_int / 10);
-	ft_putchar(aux_int % 10 + '0');
+	if (aux_int >= ft_strlen(base))
+		chars += ft_putnbr_base(aux_int / ft_strlen(base));
+	ft_putchar(base[aux_int % ft_strlen(base)]);
 	++chars;
 	return (chars);
+	
 }
