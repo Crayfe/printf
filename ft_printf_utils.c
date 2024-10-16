@@ -21,6 +21,12 @@ int	ft_strlen(char *s)
 	return (len);
 }
 
+int	ft_putchar(char c)
+{
+	write(1, &c, 1);
+	return (1);
+}
+
 int	ft_putstr(char *s)
 {
 	int	i;
@@ -32,4 +38,25 @@ int	ft_putstr(char *s)
 		i++;
 	}
 	return (i);
+}
+
+int	ft_putnbr(int n)
+{
+	unsigned int	aux_int;
+	static int	chars;
+
+	aux_int = 0;
+	if (n < 0)
+	{
+		ft_putchar('-');
+		aux_int = -1 * n;
+		++chars;
+	}
+	else
+		aux_int = n;
+	if (aux_int > 9)
+		ft_putnbr(aux_int / 10);
+	ft_putchar(aux_int % 10 + '0');
+	++chars;
+	return (chars);
 }
