@@ -16,8 +16,8 @@ int	ft_strlen(char *s)
 	int	len;
 
 	len = 0;
-	while (s[i])
-		i++;
+	while (s[len])
+		len++;
 	return (len);
 }
 
@@ -68,6 +68,7 @@ int	ft_putnbr_base(int n, char *base)
 	int		chars;
 
 	aux_int = 0;
+	chars = 0;
 	if (n < 0)
 	{
 		ft_putchar('-');
@@ -76,8 +77,8 @@ int	ft_putnbr_base(int n, char *base)
 	}
 	else
 		aux_int = n;
-	if (aux_int >= ft_strlen(base))
-		chars += ft_putnbr_base(aux_int / ft_strlen(base));
+	if (aux_int >= (unsigned int)ft_strlen(base))
+		chars += ft_putnbr_base(aux_int / ft_strlen(base), base);
 	ft_putchar(base[aux_int % ft_strlen(base)]);
 	++chars;
 	return (chars);

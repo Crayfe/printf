@@ -15,9 +15,10 @@
 # include <unistd.h>
 # include <stdarg.h>
 
-int	ft_printf(char const s, ...);
+int	ft_printf(char const *s, ...);
+int	ft_putchar();
 int	ft_putstr(char *s);
 int	ft_putnbr(int nb);
-int	ft_putbr_base(int nb, char *base);
+int	ft_putnbr_base(int nb, char *base);
 int	ft_butstr_non_printable(char *ptr);
 #endif
