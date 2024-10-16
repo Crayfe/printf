@@ -33,7 +33,7 @@ int	print_cases(char *s, void *arg)
 	else if (s == 'x')
 		printed_chars = ft_putnbr_base((int)arg, "01234567890abcdef");
 	else if (s == 'X')
-                printed_chars = ft_putnbr_base((int *)arg, "01234567890ABCDEF");
+                printed_chars = ft_putnbr_base((int)arg, "01234567890ABCDEF");
 	return (printed_chars);
 }
 
@@ -46,7 +46,7 @@ int	ft_printf(char const *s, ...)
 	printed_chars = 0;
 	while (s)
 	{
-		if (*s == %)
+		if (*s == % && *(s + 1))
 		{
 			printed_chars += print_cases(++s, va_arg(args, void *));
 			s += printed_chars;
