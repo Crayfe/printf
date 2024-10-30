@@ -23,6 +23,7 @@ static int	print_ptr(unsigned long ptr)
 	n = 0;
 	n += ft_putstr("0x");
 	n += ft_putnbr_base(ptr, "0123456789abcdef");
+	return (n);
 }
 
 static int	print_cases(char c, va_list args)
