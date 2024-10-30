@@ -11,6 +11,20 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
+static int	print_ptr(unsigned long ptr)
+{
+	int	n;
+
+	if (!ptr)
+	{
+		write(1, "(nil)", 5);
+		return (5);
+	}
+	n = 0;
+	n += ft_putstr("0x");
+	n += ft_putnbr_base(ptr, "0123456789abcdef");
+}
+
 static int	print_cases(char c, va_list args)
 {
 	int	n;
@@ -23,10 +37,7 @@ static int	print_cases(char c, va_list args)
 	else if (c == 's')
 		n = ft_putstr(va_arg(args, char *));
 	else if (c == 'p')
-	{
-		n += ft_putstr("0x");
-		n += ft_putnbr_base(va_arg(args, unsigned long), "0123456789abcdef");
-	}
+		n = print_ptr(va_arg(args, unsigned long));
 	else if (c == 'd')
 		n = ft_putnbr(va_arg(args, int));
 	else if (c == 'i')
