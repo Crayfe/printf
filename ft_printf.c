@@ -6,7 +6,7 @@
 /*   By: cayuso-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:44:08 by cayuso-f          #+#    #+#             */
-/*   Updated: 2024/10/31 15:16:54 by cayuso-f         ###   ########.fr       */
+/*   Updated: 2024/10/31 16:31:34 by cayuso-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -66,7 +66,7 @@ int	ft_printf(char const *s, ...)
 		if (s[i] == '%' && s[i + 1])
 			n_char += print_cases(s[i++ + 1], args);
 		else if (s[i] == '%' && !s[i + 1])
-			return (n_char);
+			return (-1);
 		else
 		{
 			ft_putchar(s[i]);

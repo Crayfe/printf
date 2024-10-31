@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   test_ft_printf.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cayuso-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:44:08 by cayuso-f          #+#    #+#             */
-/*   Updated: 2024/10/02 15:46:30 by cayuso-f         ###   ########.fr       */
+/*   Updated: 2024/10/31 17:00:51 by cayuso-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -54,5 +54,19 @@ int main()
     printf("ft len: %i\n", len);
     len = printf("Puntero nulo: %p\n", ptr);
     printf("len: %i\n", len);
+    len = printf("Hola %s %", "Agapito");
+    printf("len: %i\n", len);
+    printf("\n");
+    len = ft_printf("Hola %s %", "Agapito");
+    printf("ft len: %i\n", len);
+    printf("\n");
+
+    printf("Hola", nully);
+    ft_printf("Hola", nully);
+    printf("\n");
+    printf("%s");
+    printf("\n");
+    ft_printf("%s");
+    printf("\n");
     return (0);
 }
