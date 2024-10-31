@@ -64,9 +64,9 @@ int main()
     printf("Hola", nully);
     ft_printf("Hola", nully);
     printf("\n");
-    printf("%s");
+    //printf("%s");
     printf("\n");
-    ft_printf("%s");
+    //ft_printf("%s");
     printf("\n");
     return (0);
 }
