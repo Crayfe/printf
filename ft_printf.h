@@ -16,10 +16,10 @@
 # include <stdarg.h>
 
 int	ft_printf(char const *s, ...);
-int	ft_strlen(char *s);
-int	ft_putchar(char c);
-int	ft_putstr(char *s);
-int	ft_putnbr(int nb);
-int	ft_putnbr_base(unsigned long nb, char *base);
+int	ft_print_char(char c);
+int	ft_print_str(char *s);
+int	ft_print_nbr(int nb);
+int	ft_print_nbr_base(unsigned long nb, char *base);
+int	ft_print_ptr(unsigned long ptr);
 
 #endif

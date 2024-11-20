@@ -11,44 +11,29 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-static int	print_ptr(unsigned long ptr)
-{
-	int	n;
-
-	if (!ptr)
-	{
-		write(1, "(nil)", 5);
-		return (5);
-	}
-	n = 0;
-	n += ft_putstr("0x");
-	n += ft_putnbr_base(ptr, "0123456789abcdef");
-	return (n);
-}
-
 static int	print_cases(char c, va_list args)
 {
 	int	n;
 
 	n = 0;
 	if (c == '%')
-		n = ft_putchar('%');
+		n = ft_print_char('%');
 	else if (c == 'c')
-		n = ft_putchar(va_arg(args, int));
+		n = ft_print_char(va_arg(args, int));
 	else if (c == 's')
-		n = ft_putstr(va_arg(args, char *));
+		n = ft_print_str(va_arg(args, char *));
 	else if (c == 'p')
-		n = print_ptr(va_arg(args, unsigned long));
+		n = ft_print_ptr(va_arg(args, unsigned long));
 	else if (c == 'd')
-		n = ft_putnbr(va_arg(args, int));
+		n = ft_print_nbr(va_arg(args, int));
 	else if (c == 'i')
-		n = ft_putnbr(va_arg(args, int));
+		n = ft_print_nbr(va_arg(args, int));
 	else if (c == 'u')
-		n = ft_putnbr_base(va_arg(args, unsigned int), "0123456789");
+		n = ft_print_nbr_base(va_arg(args, unsigned int), "0123456789");
 	else if (c == 'x')
-		n = ft_putnbr_base(va_arg(args, unsigned int), "0123456789abcdef");
+		n = ft_print_nbr_base(va_arg(args, unsigned int), "0123456789abcdef");
 	else if (c == 'X')
-		n = ft_putnbr_base(va_arg(args, unsigned int), "0123456789ABCDEF");
+		n = ft_print_nbr_base(va_arg(args, unsigned int), "0123456789ABCDEF");
 	return (n);
 }
 
@@ -72,7 +57,7 @@ int	ft_printf(char const *s, ...)
 		}
 		else
 		{
-			ft_putchar(s[i]);
+			ft_print_char(s[i]);
 			++n_char;
 		}
 		++i;

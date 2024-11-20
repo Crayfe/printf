@@ -11,23 +11,13 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-int	ft_strlen(char *s)
-{
-	int	len;
-
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
-}
-
-int	ft_putchar(char c)
+int	ft_print_char(char c)
 {
 	write(1, &c, 1);
 	return (1);
 }
 
-int	ft_putstr(char *s)
+int	ft_print_str(char *s)
 {
 	int	i;
 
@@ -45,7 +35,7 @@ int	ft_putstr(char *s)
 	return (i);
 }
 
-int	ft_putnbr(int n)
+int	ft_print_nbr(int n)
 {
 	unsigned int	aux_int;
 	int				chars;
@@ -54,27 +44,46 @@ int	ft_putnbr(int n)
 	chars = 0;
 	if (n < 0)
 	{
-		ft_putchar('-');
+		ft_print_char('-');
 		aux_int = -1 * n;
 		++chars;
 	}
 	else
 		aux_int = n;
 	if (aux_int > 9)
-		chars += ft_putnbr(aux_int / 10);
-	ft_putchar(aux_int % 10 + '0');
+		chars += ft_print_nbr(aux_int / 10);
+	ft_print_char(aux_int % 10 + '0');
 	++chars;
 	return (chars);
 }
 
-int	ft_putnbr_base(unsigned long n, char *base)
+int	ft_print_nbr_base(unsigned long n, char *base)
 {
 	int		chars;
+	int		len;
 
 	chars = 0;
-	if (n >= (unsigned long)ft_strlen(base))
-		chars += ft_putnbr_base(n / ft_strlen(base), base);
-	ft_putchar(base[n % ft_strlen(base)]);
+	len = 0;
+	while (base[len])
+		++len;
+	if (n >= (unsigned long)len)
+		chars += ft_print_nbr_base(n / len, base);
+	ft_print_char(base[n % len]);
 	++chars;
 	return (chars);
+}
+
+int	ft_print_ptr(unsigned long ptr)
+{
+	int	n;
+
+	if (!ptr)
+	{
+		write(1, "(nil)", 5);
+		return (5);
+	}
+	n = 0;
+	n += ft_print_str("0x");
+	n += ft_print_nbr_base(ptr, "0123456789abcdef");
+	return (n);
 }
