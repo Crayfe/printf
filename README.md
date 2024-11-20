@@ -1,2 +1,2 @@
-# implementation of the printf function
+# Relicating the printf function
 In this project the basic behavior of the printf function is reproduced.
